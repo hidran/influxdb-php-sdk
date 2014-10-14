@@ -3,7 +3,7 @@ namespace InfluxDB;
 
 use Zend\Stdlib\Hydrator\ClassMethods;
 use GuzzleHttp\Client as GuzzleClient;
-
+use Zend\Http\Client as ZendClient;
 abstract class ClientFactory
 {
     public static function create(array $options)
@@ -38,7 +38,11 @@ abstract class ClientFactory
             case 'InfluxDB\\Adapter\\GuzzleAdapter':
                 $adapter = new $adapterName(new GuzzleClient($options["adapter"]["options"]), $adapterOptions);
                 break;
-            default:
+             case 'InfluxDB\\Adapter\\ZendAdapter':
+             	$uri = $adapterOptions->getHttpSeriesEndpoint();
+                $adapter = new $adapterName(new ZendClient($uri , $options["adapter"]["options"]), $adapterOptions);
+                break;
+           default:
                 throw new \InvalidArgumentException("Missing adapter {$adapter}");
         }
 

@@ -40,14 +40,14 @@ $results = $client->query("select * from app.search");
 
 ## InfluxDB client adapters
 
-Actually we supports two adapters
+Currently we support two adapters
 
  * UDP/IP - in order to send data via UDP (datagram)
  * HTTP JSON - in order to send/retrieve using HTTP (connection oriented)
 
 ### Using UDP/IP Adapter
 
-Actually "socket" php library is used for UDP/IP adapter
+Currently, "socket" php library is used for UDP/IP adapter
 
 ```
 $options = new Options();
@@ -59,7 +59,7 @@ $client->setAdapter($adapter);
 
 ### Using HTTP Adapter
 
-Actually Guzzle is used as HTTP client library
+Currently, Guzzle and Zend HttpClient are used as HTTP client library
 
 ```php
 <?php
@@ -75,7 +75,7 @@ $client->setAdapter($adapter);
 ### Create your client with the factory method
 
 Effectively the client creation is not so simple, for that
-reason you can you the factory method provided with the library.
+reason, you can use the factory method provided with the library.
 
 ```php
 $options = [
